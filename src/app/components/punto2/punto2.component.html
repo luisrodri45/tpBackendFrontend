@@ -1,0 +1,148 @@
+<div class="row">
+    <section class="d-none d-md-block col-md-8">
+        <div class="table-responsive border border-info bg-dark">
+            <table class="table table-dark table-borderless caption-top table-striped table-hover">
+                <caption class="text-center bg-primary text-light fs-2">Conversor de divisas</caption>
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col" colspan="2"></th>
+                    <th scope="col"><img src="../../../assets/img/usa.png" alt="imgUSD" class="img-fluid img-thumbnail" width="50" height="50">USD</th>
+                    <th scope="col"><img src="../../../assets/img/europa.png" alt="imgEUR" class="img-fluid img-thumbnail" width="50" height="50">EUR</th>
+                    <th scope="col"><img src="../../../assets/img/inglaterra.jpg" alt="imgGBP" class="img-fluid img-thumbnail" width="50" height="50">GBP</th>
+                    <th scope="col"><img src="../../../assets/img/japon.jpg" alt="imgJPY" class="img-fluid img-thumbnail" width="50" height="50">JPY</th>
+                    <th scope="col"><img src="../../../assets/img/china.jpg" alt="" class="img-fluid img-thumbnail" width="50" height="50">CNY</th>
+                    <th scope="col"><img src="../../../assets/img/australia.jpg" alt="imgAUD" class="img-fluid img-thumbnail" width="50" height="50">AUD</th>
+                    <th scope="col"><img src="../../../assets/img/bitcoin.png" alt="imgBTC" class="img-fluid img-thumbnail" width="50" height="50">BTC</th>
+                    <th scope="col"><img src="../../../assets/img/argentina.jpg" alt="imgARS" class="img-fluid img-thumbnail" width="50" height="50">ARS</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row"><img src="../../../assets/img/usa.png" alt="imgUSD" width="45" height="25"></th>
+                        <td>1 USD</td>
+                        <td>1.00000</td>
+                        <td>0.92422</td>
+                        <td>0.76549</td>
+                        <td>126.409</td>
+                        <td>6.37020</td>
+                        <td>1.35097</td>
+                        <td>0.00002</td>
+                        <td>113.861</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Inverse</td>
+                        <td>1.00000</td>
+                        <td>1.08099</td>
+                        <td>1.30515</td>
+                        <td>0.00790</td>
+                        <td>0.15693</td>
+                        <td>0.73882</td>
+                        <td>40332.6</td>
+                        <td>0.00877</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><img src="../../../assets/img/europa.png" alt="imgEUR" width="45" height="25"></th>
+                        <td>1 EUR</td>
+                        <td>1.08099</td>
+                        <td>1.00000</td>
+                        <td>0.82762</td>
+                        <td>136.691</td>
+                        <td>6.88612</td>
+                        <td>1.46158</td>
+                        <td>0.00003</td>
+                        <td>123.082</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Inverse</td>
+                        <td>0.92422</td>
+                        <td>1.00000</td>
+                        <td>1.20610</td>
+                        <td>0.00731</td>
+                        <td>0.14504</td>
+                        <td>0.68326</td>
+                        <td>37276.3</td>
+                        <td>0.00811</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><img src="../../../assets/img/inglaterra.jpg" alt="imgGBP" width="45" height="25"></th>
+                        <td>1 GBP</td>
+                        <td>1.30515</td>
+                        <td>1.20610</td>
+                        <td>1.00000</td>
+                        <td>165.085</td>
+                        <td>8.31407</td>
+                        <td>1.76322</td>
+                        <td>0.00003</td>
+                        <td>148.605</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Inverse</td>
+                        <td>0.76549</td>
+                        <td>0.82762</td>
+                        <td>1.00000</td>
+                        <td>0.00605</td>
+                        <td>0.12013</td>
+                        <td>0.56556</td>
+                        <td>30874.0</td>
+                        <td>0.00672</td>
+                    </tr>
+                    <tr>
+                        <th scope="row"><img src="../../../assets/img/rusia.png" alt="imgRUB"  width="45" height="25"></th>
+                        <td>1 RUB</td>
+                        <td>0.01238</td>
+                        <td>0.01144</td>
+                        <td>0.00948</td>
+                        <td>1.56476</td>
+                        <td>0.07885</td>
+                        <td>0.01672</td>
+                        <td>0,00000</td>
+                        <td>1.40943</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>Inverse</td>
+                        <td>80.715</td>
+                        <td>87.2521</td>
+                        <td>105.345</td>
+                        <td>0.63802</td>
+                        <td>12.6667</td>
+                        <td>59.6339</td>
+                        <td>3255450</td>
+                        <td>0.70822</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <aside class="col-sm-12 col-md-4">
+        <form class="row g-3 bg-dark bg-gradient m-0" id="conversor">
+            <legend class="text-white text-center">Conversor de divisas</legend>
+            <div class="col-12">
+              <label for="inputCantidad" class="form-label text-light">Cantidad</label>
+              <input type="number" class="form-control bg-black text-light" id="inputCantidad" [(ngModel)]="cantidad" (ngModelChange)="getConversion()" name="cantidad" placeholder="Cantidad">
+            </div>
+            <div class="col-12">
+                <label for="inputDe" class="form-label text-light">De</label>
+                <select id="inputDe" class="form-select bg-black text-light" [(ngModel)]="tengo" (ngModelChange)="getConversion()" name="tengo">
+                  <ng-container *ngFor="let cod of codigos">
+                    <option selected value="{{cod.codigo}}">{{cod.codigo}} ({{cod.nombre}})</option>
+                  </ng-container>
+                </select>
+            </div>
+            <div class="col-12">
+                <label for="inputA" class="form-label text-light">A</label>
+                <select id="inputA" class="form-select bg-black text-light" [(ngModel)]="quiero" (ngModelChange)="getConversion()" name="quiero">
+                    <ng-container *ngFor="let cod of codigos">
+                        <option value="{{cod.codigo}}">{{cod.codigo}} ({{cod.nombre}})</option>
+                      </ng-container>
+                </select>
+            </div>
+            <div class="col-12 text-center">
+                <textarea class="form-control bg-black text-light pb-4 pt-4 mb-1" id="textoTraducido" rows="3" placeholder="Conversion" readonly>{{conversionFinal|currency:quiero}}</textarea>
+            </div>
+        </form>
+    </aside>
+</div>

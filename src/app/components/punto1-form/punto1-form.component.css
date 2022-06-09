@@ -1,0 +1,29 @@
+form {
+    background-color: rgba(19, 24, 102, 0.664);
+    border-radius: 10px;
+    padding: 20px;
+    height: fit-content;
+    margin: 0;
+}
+.form-floating input{
+    background: #000;
+    color: #28f;
+    border: none;
+    outline: 5px solid #000;
+    transition: border-bottom ease .5s;
+}
+.form input[type=number] {
+    appearance: none;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+.form-floating input:focus {
+    border-bottom: 2px solid #45f;
+}
+legend {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #34f;
+}
