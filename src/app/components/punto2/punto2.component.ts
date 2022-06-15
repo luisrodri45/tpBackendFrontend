@@ -13,13 +13,14 @@ export class Punto2Component implements OnInit {
   tengo!:string;
   quiero!:string;
   cantidad!:string;
-  conversionFinal!:string;
+  conversionFinal!:number;
   moneda!:Moneda;
   transaccion!:Transaccion;
   constructor(private conversorService:ConversorService) { }
 
   ngOnInit(): void {
     this.getCodigos();
+    this.transaccion = new Transaccion();
   }
 
   getCodigos(){
@@ -35,19 +36,16 @@ export class Punto2Component implements OnInit {
           this.codigos.push(this.moneda);
         }
       })
+    },
+    error=>{
+      console.log("Un error se producio: "+error); 
     })
   }
   getConversion(){
-    if(this.tengo!=undefined && this.quiero!=undefined && this.cantidad!=undefined){
-      this.conversorService.getConversion(this.tengo,this.quiero,this.cantidad).subscribe(res=>{
-        this.conversionFinal = res.new_amount;
-        this.transaccion = new Transaccion();
-        this.transaccion.monedaOrigen = this.tengo;
-        this.transaccion.monedaDestino = this.quiero
-        this.transaccion.cantidadOrigen =  Number(this.cantidad);
-        this.transaccion.cantidadDestino = Number(this.conversionFinal);
-        this.transaccion.tasaConversion = Number(this.cantidad);
-        this.transaccion.emailCliente = "luisedurodriguez2014@gmail.com"
+    if(this.transaccion.cantidadOrigen!=undefined && this.transaccion.monedaDestino!=undefined && this.transaccion.monedaOrigen!=undefined && this.transaccion.emailCliente!=undefined && this.transaccion.tasaConversion!=undefined){
+      this.conversorService.getConversion(this.transaccion.monedaOrigen,this.transaccion.monedaDestino,this.transaccion.cantidadOrigen.toString()).subscribe(res=>{
+        this.conversionFinal = this.transaccion.cantidadOrigen*this.transaccion.tasaConversion;
+        this.transaccion.cantidadDestino = this.conversionFinal;
         this.altaTransaccion(this.transaccion);
       },
       error=>{

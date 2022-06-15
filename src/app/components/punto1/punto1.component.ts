@@ -19,13 +19,14 @@ export class Punto1Component implements OnInit {
   obtenerLibros(){
     this.libros = new Array<Libro>();
     this.libroService.getLibros().subscribe(res =>{
-      console.log(res);
       res.forEach((e:any) => {
         this.libro = new Libro();
         Object.assign(this.libro,e);
         this.libros.push(this.libro);
       });
-      console.log(this.libros);
+    },
+    error=>{
+      console.log("Un error se producio: "+error); 
     })
   }
 }

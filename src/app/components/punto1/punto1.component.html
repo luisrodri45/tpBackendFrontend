@@ -1,6 +1,6 @@
 <section class="row">
-    <h2 class="text-center">Libros destacados</h2>
-    <div id="carouselExampleCaptions" class="carousel slide m-auto" data-bs-ride="carousel">
+    <h2 class="text-center text-light">Libros destacados</h2>
+    <div id="carouselExampleCaptions" class="carousel slide m-auto col-12 col-md-8" data-bs-ride="carousel">
       <div class="carousel-inner">
         <ng-container *ngFor="let libro of libros;index as i">
           <div class="carousel-item active" *ngIf="i==0">
@@ -8,6 +8,7 @@
               <div class="carousel-caption d-none d-md-block fondoInfo">
                 <h5>{{libro.titulo}}</h5>
                 <p>{{libro.descripcion}}</p>
+                <p>{{libro.stock}}</p>
               </div>
           </div>
           <div class="carousel-item" *ngIf="i!=0">
@@ -15,6 +16,7 @@
               <div class="carousel-caption d-none d-md-block fondoInfo">
                 <h5>{{libro.titulo}}</h5>
                 <p>{{libro.descripcion}}</p>
+                <p>{{libro.stock}}</p>
               </div>
           </div>
         </ng-container>

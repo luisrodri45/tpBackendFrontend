@@ -12,7 +12,7 @@ export class LibroService {
   getLibros():Observable<any>{
     const httpOptions = {
       headers : new HttpHeaders({
-
+        "Content-Type": "application/json"
       }),
       params : new HttpParams({
 
@@ -23,8 +23,11 @@ export class LibroService {
   altaLibro(libro:Libro):Observable<any>{
     const httpOptions = {
       headers: new HttpHeaders({
-        
+        "Content-Type": "application/json"
       }),
+      params : new HttpParams({
+
+      })
     }
     const body ={
       "titulo": libro.titulo,

@@ -118,30 +118,74 @@
         </div>
     </section>
     <aside class="col-sm-12 col-md-4">
-        <form class="row g-3 bg-dark bg-gradient m-0" id="conversor">
+        <form class="row g-3 bg-dark bg-gradient m-0" id="conversor" #conversorForm="ngForm">
             <legend class="text-white text-center">Conversor de divisas</legend>
             <div class="col-12">
               <label for="inputCantidad" class="form-label text-light">Cantidad</label>
-              <input type="number" class="form-control bg-black text-light" id="inputCantidad" [(ngModel)]="cantidad" (ngModelChange)="getConversion()" name="cantidad" placeholder="Cantidad">
+              <input type="number" class="form-control bg-black text-light" id="inputCantidad" [(ngModel)]="transaccion.cantidadOrigen" name="cantidad" placeholder="Cantidad" #cantidad="ngModel" min="0" required>
+                <div *ngIf="cantidad.invalid && (cantidad.dirty || cantidad.touched)" class="alert alert-danger p-1 m-0">
+                    <div *ngIf="cantidad.errors?.['required']">
+                        Es necesario rellenar este campo
+                    </div>
+                    <div *ngIf="cantidad.errors?.['min']">
+                        No debe ser negativo
+                    </div>
+                </div>
             </div>
             <div class="col-12">
                 <label for="inputDe" class="form-label text-light">De</label>
-                <select id="inputDe" class="form-select bg-black text-light" [(ngModel)]="tengo" (ngModelChange)="getConversion()" name="tengo">
+                <select id="inputDe" class="form-select bg-black text-light" [(ngModel)]="transaccion.monedaOrigen" name="tengo" #tengo="ngModel" required>
                   <ng-container *ngFor="let cod of codigos">
                     <option selected value="{{cod.codigo}}">{{cod.codigo}} ({{cod.nombre}})</option>
                   </ng-container>
                 </select>
+                <div *ngIf="tengo.invalid && (tengo.dirty || tengo.touched)" class="alert alert-danger p-1 m-0">
+                    <div *ngIf="tengo.errors?.['required']">
+                      Es necesario rellenar este campo
+                    </div>
+                </div>
             </div>
             <div class="col-12">
                 <label for="inputA" class="form-label text-light">A</label>
-                <select id="inputA" class="form-select bg-black text-light" [(ngModel)]="quiero" (ngModelChange)="getConversion()" name="quiero">
+                <select id="inputA" class="form-select bg-black text-light" [(ngModel)]="transaccion.monedaDestino" name="quiero" #quiero="ngModel" required>
                     <ng-container *ngFor="let cod of codigos">
                         <option value="{{cod.codigo}}">{{cod.codigo}} ({{cod.nombre}})</option>
-                      </ng-container>
+                    </ng-container>
                 </select>
+                <div *ngIf="quiero.invalid && (quiero.dirty || quiero.touched)" class="alert alert-danger p-1 m-0">
+                    <div *ngIf="quiero.errors?.['required']">
+                      Es necesario rellenar este campo
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <label for="inputTasa" class="form-label text-light">Tasa de conversion</label>
+                <input type="number" class="form-control bg-black text-light" id="inputTasa" [(ngModel)]="transaccion.tasaConversion" name="tasa" placeholder="Tasa de conversion" #tasa="ngModel" min="0" required>
+                  <div *ngIf="tasa.invalid && (tasa.dirty || tasa.touched)" class="alert alert-danger p-1 m-0">
+                      <div *ngIf="tasa.errors?.['required']">
+                      Es necesario rellenar este campo
+                      </div>
+                      <div *ngIf="tasa.errors?.['min']">
+                        No debe ser negativo
+                      </div>
+                  </div>
+            </div>
+            <div class="col-12">
+                <label for="correo" class="form-label text-light">Correo</label>
+                <input type="text" class="form-control bg-black text-light" id="correo" [(ngModel)]="transaccion.emailCliente" name="correo" placeholder="Correo" #correo="ngModel" required>
+                <div *ngIf="correo.invalid && (correo.dirty || correo.touched)" class="alert alert-danger p-1 m-0">
+                    <div *ngIf="correo.errors?.['required']">
+                      Es necesario rellenar este campo
+                    </div>
+                </div>
             </div>
             <div class="col-12 text-center">
-                <textarea class="form-control bg-black text-light pb-4 pt-4 mb-1" id="textoTraducido" rows="3" placeholder="Conversion" readonly>{{conversionFinal|currency:quiero}}</textarea>
+                <textarea class="form-control bg-black text-light pb-4 pt-4 mb-1" id="textoTraducido" rows="3" placeholder="Conversion" readonly>{{conversionFinal|currency}}</textarea>
+            </div>
+            <div class="col-12">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-primary" type="button" (click)="getConversion()">Convertir</button>
+                </div>
             </div>
         </form>
     </aside>

@@ -1,1 +1,56 @@
-<p>punto3-form works!</p>
+<div class="row">
+    <div class="col-12 col-md-6 m-auto">
+        <form class="row g-3 text-center" autocomplete="off" #pasajeForm="ngForm">
+            <legend *ngIf="accion=='new'">Agregar pasaje</legend>
+            <legend *ngIf="accion!='new'">Modificar pasaje</legend>
+            <div class="form-floating col-md-12 text-info">
+                <input type="number" class="form-control" id="precioPasaje" placeholder=" " [(ngModel)]="pasaje.precioPasaje" name="precioPasaje" #precio="ngModel" min="100" required>
+                <label for="precioPasaje" class="form-label">Precio pasaje</label>
+                <div *ngIf="precio.invalid && (precio.dirty || precio.touched)" class="alert alert-danger p-1 m-0">
+                    <div *ngIf="precio.errors?.['required']">
+                      Es necesario rellenar este campo
+                    </div>
+                    <div *ngIf="precio.errors?.['min']">
+                      El precio minimo debe ser 100
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating text-info">
+                    <select class="form-select bg-black text-info" id="floatingSelect" aria-label="Floating label select example" [(ngModel)]="pasaje.categoriaPasajero" name="categoriaPasajero" #categoria="ngModel" required>
+                      <option value="m" selected="selected">Menor</option>
+                      <option value="a">Adulto</option>
+                      <option value="j">Jubilado</option>
+                    </select>
+                    <label for="floatingSelect">Categoria</label>
+                </div>
+                <div *ngIf="categoria.invalid && (categoria.dirty || categoria.touched)" class="alert alert-danger p-1 m-0">
+                    <div *ngIf="categoria.errors?.['required']">
+                      Es necesario rellenar este campo
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-floating text-info">
+                    <select class="form-select bg-black text-info" id="floatingSelect" aria-label="Floating label select example" [(ngModel)]="pasaje.pasajero" name="pasajero" #pasajero="ngModel" required>
+                        <ng-container *ngFor="let per of personas">
+                            <option value="{{per._id}}">{{per.nombre|titlecase}}, {{per.apellido|titlecase}}</option>
+                        </ng-container>
+                    </select>
+                    <label for="floatingSelect">Pasajero</label>
+                </div>
+                <div *ngIf="pasajero.invalid && (pasajero.dirty || pasajero.touched)" class="alert alert-danger p-1 m-0">
+                    <div *ngIf="pasajero.errors?.['required']">
+                      Es necesario rellenar este campo
+                    </div>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-info text-light" type="button" *ngIf="accion=='new'" (click)="agregarPasaje()">Agregar</button>
+                    <button class="btn btn-info text-light" type="button" *ngIf="accion!='new'" (click)="actualizarPasaje()">Modificar</button>
+                </div>
+            </div>
+        </form>    
+    </div>
+</div>

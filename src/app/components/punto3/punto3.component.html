@@ -1,23 +1,46 @@
 <div class="row">
-    <h2 class="text-center">Formulario de pasajes</h2>
+    <h2 class="text-center text-light">Lista de pasajes</h2>
     <div class="row mt-5">
-      <div class="col-12 col-lg-8">
+      <div class="col-12">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+            Filtrar por categoria
+          </button>
+          <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+            <li><a class="dropdown-item" (click)="filtrarCategoria('m')">Menor</a></li>
+            <li><a class="dropdown-item" (click)="filtrarCategoria('a')">Adulto</a></li>
+            <li><a class="dropdown-item" (click)="filtrarCategoria('j')">Jubilado</a></li>
+            <li><a class="dropdown-item" (click)="cargarPasajes()">Todo</a></li>
+          </ul>
+        </div>
         <div class="table-responsive">
-             
+             <table class="table table-dark table-striped table-hover">
+              <thead>
+                <tr>
+                    <th>Precio Pasaje</th>
+                    <th>Fecha Compra</th>
+                    <th>Categoria Pasajero</th>
+                    <th>Pasajero</th>
+                    <th>Opciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngIf="pasajes.length==0">
+                  <td colspan="5">No hay pasajes</td>
+                </tr>
+                <tr *ngFor="let pasaje of pasajes">
+                  <td>{{pasaje.precioTotal|currency}}</td>
+                  <td>{{pasaje.fechaCompra|date:'dd/MM/yyyy'}}</td>
+                  <td>{{pasaje.categoriaPasajero|categoriaCompleta}}</td>
+                  <td>{{pasaje.pasajero.apellido|titlecase}}, {{pasaje.pasajero.nombre|titlecase}}</td>
+                  <td>
+                    <button type="button" class="btn btn-danger w-50" (click)="borrarPasaje(pasaje._id)"><i class="bi bi-trash"></i></button>
+                    <button type="button" class="btn btn-primary w-50" (click)="actualizarPasaje(pasaje)"><i class="bi bi-pencil-square"></i></button> 
+                  </td>
+                </tr>
+              </tbody>
+             </table>
         </div>
       </div>
-      <div class="col-12 col-lg-4">
-        <table class="table table-bordered text-light caption-top text-center" id="tablePasajes">
-          <caption class="text-center text-primary fs-4">Resumen de ventas</caption>
-          <thead class="table-dark">
-            <th scope="col" class="border border-light p-1">Categoria</th>
-            <th scope="col" class="border border-light p-1">Ventas</th>
-            <th scope="col" class="border border-light p-1">Total</th>
-          </thead>
-          <tbody>
-            
-          </tbody>
-        </table>
-      </div> 
     </div>
 </div>

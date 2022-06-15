@@ -11,6 +11,7 @@ import { LibroService } from 'src/app/services/libro.service';
 export class Punto1FormComponent implements OnInit {
   libro!:Libro;
   aux!:string;
+  bandera:boolean = false;
   constructor(private libroService:LibroService,private router:Router) { 
     this.libro = new Libro();
     this.libro.destacado = false;
@@ -20,27 +21,28 @@ export class Punto1FormComponent implements OnInit {
   }
 
   agregarLibro(){
-    console.log("aaa");
-    /* console.log(this.descripcion);
-    console.log(this.destacado);
-    console.log(this.aux);
-    console.log(this.stock);
-    console.log(this.titulo); */
-    /* this.libro.descripcion = this.descripcion;
-    this.libro.destacado = this.destacado; */
-    this.libro.imagen = this.aux;
-    /* this.libro.stock = this.stock;
-    this.libro.titulo = this.titulo; */
-    console.log(this.libro);
-    this.libroService.altaLibro(this.libro).subscribe();
-    console.log("bbb");
-    this.libro = new Libro();
-    this.libro.destacado = false;
-    this.router.navigate(["punto1"]);
+    if(this.libro.titulo!=undefined && this.libro.descripcion!=undefined && (this.aux!=undefined || this.libro.imagen!=undefined) && this.libro.stock!=undefined){
+      if(this.bandera){
+        this.libro.imagen = this.aux;
+      }
+      this.libroService.altaLibro(this.libro).subscribe();
+      this.router.navigate(["punto1"]);
+    }
   }
 
   onFileChanges(files:any){
     console.log("File has changed:", files);
     this.aux = files[0].base64;
+  }
+
+  determinarMetodo(met:string){
+    if(met=="a"){
+      this.bandera = true;
+      this.libro.imagen = "";
+    }else{
+      this.bandera = false;
+      this.aux = "";
+      this.libro.imagen = "";
+    }
   }
 }

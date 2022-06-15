@@ -14,6 +14,7 @@ import { Punto3Component } from './components/punto3/punto3.component';
 import { Punto1FormComponent } from './components/punto1-form/punto1-form.component';
 import { Punto2BComponent } from './components/punto2-b/punto2-b.component';
 import { Punto3FormComponent } from './components/punto3-form/punto3-form.component';
+import { CategoriaCompletaPipe } from './pipes/categoria-completa.pipe';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { Punto3FormComponent } from './components/punto3-form/punto3-form.compon
     Punto3Component,
     Punto1FormComponent,
     Punto2BComponent,
-    Punto3FormComponent
+    Punto3FormComponent,
+    CategoriaCompletaPipe
   ],
   imports: [
     BrowserModule,

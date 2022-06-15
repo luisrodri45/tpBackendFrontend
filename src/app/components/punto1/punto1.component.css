@@ -1,0 +1,8 @@
+img{
+    height: 700px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+.fondoInfo{
+    background: rgba(0,0,0,.5);
+}

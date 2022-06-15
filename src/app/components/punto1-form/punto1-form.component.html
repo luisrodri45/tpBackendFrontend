@@ -1,5 +1,5 @@
 <section class="row">
-    <div class="col-6">
+    <div class="col-12 col-md-8 m-auto">
         <form class="row g-3" autocomplete="off" #libroForm="ngForm">
             <legend>Dar de alta un libro</legend>
             <div class="form-floating col-md-6 text-info">
@@ -29,13 +29,28 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 text-info">
+            <div class="col-12">
+              <div class="d-grid gap-2">
+                  <button *ngIf="!bandera" class="btn btn-warning" type="button" (click)="determinarMetodo('a')">Imagen por URL</button>
+                  <button *ngIf="bandera"  class="btn btn-warning" type="button" (click)="determinarMetodo('b')">Imagen por archivo</button>
+              </div>
+            </div>
+            <div class="col-12 text-info" *ngIf="bandera">
                 <input id="imagen" type="file" class="imagen" name="imagen" [(ngModel)]="libro.imagen" alife-file-to-base64 accept="image/x-png,image/gif,image/jpeg" (onFileChanged)="onFileChanges($event)" #imagen="ngModel" required>
                 <div *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)" class="alert alert-danger p-1 m-0">
                     <div *ngIf="imagen.errors?.['required']">
                       Es necesario rellenar este campo
                     </div>
                 </div>
+            </div>
+            <div class="form-floating col-md-12 text-info" *ngIf="!bandera">
+              <input type="url" class="form-control" id="imagen" placeholder=" " [(ngModel)]="libro.imagen" name="imagen" #imagen="ngModel" required>
+              <label for="stock" class="form-label">Imagen</label>
+              <div *ngIf="imagen.invalid && (imagen.dirty || imagen.touched)" class="alert alert-danger p-1 m-0">
+                  <div *ngIf="imagen.errors?.['required']">
+                    Es necesario rellenar este campo
+                  </div>
+              </div>
             </div>
             <div class="col-12 text-info">
                 <div class="form-check">

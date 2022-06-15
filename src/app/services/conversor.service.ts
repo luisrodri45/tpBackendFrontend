@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Transaccion } from '../models/transaccion';
@@ -31,6 +31,9 @@ export class ConversorService {
   public postTransacccion(transaccion:Transaccion){
     const httpOptions = {
       headers : new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      params : new HttpParams({
 
       })
     }
@@ -48,6 +51,9 @@ export class ConversorService {
   public getTransacciones():Observable<any>{
     const httpOptions = {
       headers : new HttpHeaders({
+        "Content-Type": "application/json"
+      }),
+      params : new HttpParams({
 
       })
     }
@@ -57,7 +63,10 @@ export class ConversorService {
   public getTransaccionesOrigenDestino(origen:string,destino:string):Observable<any>{
     const httpOptions = {
       headers : new HttpHeaders({
-
+        "Content-Type": "application/json"
+      }),
+      params : new HttpParams({
+        
       })
     }
     return this._http.get(this.urlBase+"/"+origen+"/"+destino,httpOptions);

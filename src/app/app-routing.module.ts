@@ -14,6 +14,7 @@ const routes: Routes = [
   {path:"punto1-form",component:Punto1FormComponent},
   {path:"punto2-b",component:Punto2BComponent},
   {path:"punto3-form",component:Punto3FormComponent},
+  {path:"punto3-form/editar/:id",component:Punto3FormComponent},
   {path:"**",component:Punto1Component}
 ];
 
