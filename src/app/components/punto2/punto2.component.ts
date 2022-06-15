@@ -45,6 +45,8 @@ export class Punto2Component implements OnInit {
     if(this.transaccion.cantidadOrigen!=undefined && this.transaccion.monedaDestino!=undefined && this.transaccion.monedaOrigen!=undefined && this.transaccion.emailCliente!=undefined && this.transaccion.tasaConversion!=undefined){
       this.conversorService.getConversion(this.transaccion.monedaOrigen,this.transaccion.monedaDestino,this.transaccion.cantidadOrigen.toString()).subscribe(res=>{
         this.conversionFinal = this.transaccion.cantidadOrigen*this.transaccion.tasaConversion;
+        //this.conversionFinal = res.new_amount;
+        //this.transaccion.tasaConversion = this.conversionFinal / this.transaccion.cantidadOrigen;
         this.transaccion.cantidadDestino = this.conversionFinal;
         this.altaTransaccion(this.transaccion);
       },

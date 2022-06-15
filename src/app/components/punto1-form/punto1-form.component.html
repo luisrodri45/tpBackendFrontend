@@ -31,8 +31,8 @@
             </div>
             <div class="col-12">
               <div class="d-grid gap-2">
-                  <button *ngIf="!bandera" class="btn btn-warning" type="button" (click)="determinarMetodo('a')">Imagen por URL</button>
-                  <button *ngIf="bandera"  class="btn btn-warning" type="button" (click)="determinarMetodo('b')">Imagen por archivo</button>
+                  <button *ngIf="!bandera" class="btn btn-warning" type="button" (click)="determinarMetodo('a')">Imagen por archivo</button>
+                  <button *ngIf="bandera"  class="btn btn-warning" type="button" (click)="determinarMetodo('b')">Imagen por URL</button>
               </div>
             </div>
             <div class="col-12 text-info" *ngIf="bandera">
